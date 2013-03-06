@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<script language="JavaScript" type="text/javascript" src="git.js"></script> 
+<link rel="stylesheet" href="jquery.superbox.css" type="text/css" media="all" />
+    <style type="text/css">
+        /* Custom Theme */
+        #superbox-overlay{background:#e0e4cc;}
+        #superbox-container .loading{width:32px;height:32px;margin:0 auto;text-indent:-9999px;background:url(styles/loader.gif) no-repeat 0 0;}
+        #superbox .close a{float:right;padding:0 5px;line-height:20px;background:#333;cursor:pointer;}
+        #superbox .close a span{color:#fff;}
+        #superbox .nextprev a{float:left;margin-right:5px;padding:0 5px;line-height:20px;background:#333;cursor:pointer;color:#fff;}
+        #superbox .nextprev .disabled{background:#ccc;cursor:default;}
+    </style>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript" src="my_querybox.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $.superbox.settings = {
+                closeTxt: "Close",
+                loadTxt: "Loading...",
+                nextTxt: "Next",
+                prevTxt: "Previous",
+            };
+            $.superbox();
+        });
+    </script>
+
+
+
+
+<title>Git - Undoing Things</title>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+
+/head>
+<body id='documentation'>
+<div class='inner'>
+<header>
+<span id='tagline'>
+<em>--</em>distributed-is-the-new-centralized
+</span>
+<form action='/search/results' id='search'>
+<input id="search-text" name="search" placeholder="Search entire site..." autocomplete="off" type="text" />
+</form>
+<div id='search-results'></div>
+</header>
+
+</div>
+<div class='inner'>
+<div id='content-wrapper'>
+<aside class='sidebar'>
+<nav>
+<ul>
+<li><a href="/about" class="">About</a></li>
+<li>
+<a href="/doc" class="active">Documentation</a>
+<ul class='expanded'>
+<li><a href="/docs" class="">Reference</a></li>
+<li><a href="/book" class="active">Book</a></li>
+<li><a href="/videos" class="">Videos</a></li>
+<li><a href="/doc/ext" class="">External Links</a></li>
+</ul>
+</li>
+<li>
+<a href="/downloads" class="">Downloads</a>
+<ul class=''>
+<li><a href="/downloads/guis" class="">GUI Clients</a></li>
+<li><a href="/downloads/logos" class="">Logos</a></li>
+</ul>
+</li>
+<li><a href="/community" class="">Community</a></li>
+</ul>
+</nav>
+<hr class='sidebar'>
+  <p>Download this book in <a href="https://github.s3.amazonaws.com/media/progit.en.pdf">PDF</a>, <a href="https://github.s3.amazonaws.com/media/pro-git.en.mobi">mobi</a>, or <a href="https://github.s3.amazonaws.com/media/progit.epub">ePub</a> form for free.</p>
+
+  <p>
+This book is translated into 
+  <a href="/book/de">German</a>, 
+  <a href="/book/zh">Chinese</a>, 
+  <a href="/book/fr">French</a>,
+  <a href="/book/ja">Japanese</a> and 
+  <a href="/book/nl">Dutch</a>.
+</p>
+
+<p>
+Partial translations available in 
+  <a href="/book/ar">Arabic</a>,
+  <a href="/book/cs">Czech</a>,
+  <a href="/book/es">Spanish</a>,
+  <a href="/book/id">Indonesian</a>,
+  <a href="/book/it">Italian</a>,
+  <a href="/book/mk">Macedonian</a>,
+  <a href="/book/pl">Polish</a>,
+  <a href="/book/th">Thai</a> and
+  <a href="/book/ru">Russian</a>.
+</p>
+
+<hr class="sidebar"/>
+
+    <h4>Related Material</h4>
+  <ul class="related-material">
+      <li class="reference">
+      <strong><a href="/ref/git-add">git-add</a></strong>
+        in <a href="/docs">Reference</a>
+      </li>
+      <li class="reference">
+      <strong><a href="/ref/git-reset">git-reset</a></strong>
+        in <a href="/docs">Reference</a>
+      </li>
+      <li class="reference">
+      <strong><a href="/ref/git-status">git-status</a></strong>
+        in <a href="/docs">Reference</a>
+      </li>
+      <li class="reference">
+      <strong><a href="/ref/git-commit">git-commit</a></strong>
+        in <a href="/docs">Reference</a>
+      </li>
+      <li class="reference">
+      <strong><a href="/ref/git-checkout">git-checkout</a></strong>
+        in <a href="/docs">Reference</a>
+      </li>
+  </ul>
+
+
+</aside>
+<div id='content'>
+
+
+<div id='book-chapters'>
+  <a class="dropdown-trigger" id="book-chapters-trigger" data-panel-id="chapters-dropdown" href="#">Chapters ▾</a>
+<div class='dropdown-panel' id='chapters-dropdown'>
+  <div class="three-column">
+    <div class='column-left'>
+      <ol class='book-toc'>
+  <li class='chapter'>
+  <h2>1. <a href="/book/en/Getting-Started">Getting Started</a></h2>
+    <ol>
+          <li>
+            1.1
+            <a href="/book/en/Getting-Started-About-Version-Control">About Version Control</a>
+          </li>
+          <li>
+            1.2
+            <a href="/book/en/Getting-Started-A-Short-History-of-Git">A Short History of Git</a>
+          </li>
+          <li>
+            1.3
+            <a href="/book/en/Getting-Started-Git-Basics">Git Basics</a>
+          </li>
+          <li>
+            1.4
+            <a href="/book/en/Getting-Started-Installing-Git">Installing Git</a>
+          </li>
+          <li>
+            1.5
+            <a href="/book/en/Getting-Started-First-Time-Git-Setup">First-Time Git Setup</a>
+          </li>
+          <li>
+            1.6
+            <a href="/book/en/Getting-Started-Getting-Help">Getting Help</a>
+          </li>
+          <li>
+            1.7
+            <a href="/book/en/Getting-Started-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+  <li class='chapter'>
+  <h2>2. <a href="/book/en/Git-Basics">Git Basics</a></h2>
+    <ol>
+          <li>
+            2.1
+            <a href="/book/en/Git-Basics-Getting-a-Git-Repository">Getting a Git Repository</a>
+          </li>
+          <li>
+            2.2
+            <a href="/book/en/Git-Basics-Recording-Changes-to-the-Repository">Recording Changes to the Repository</a>
+          </li>
+          <li>
+            2.3
+            <a href="/book/en/Git-Basics-Viewing-the-Commit-History">Viewing the Commit History</a>
+          </li>
+          <li>
+            2.4
+            <a href="/book/en/Git-Basics-Undoing-Things">Undoing Things</a>
+          </li>
+          <li>
+            2.5
+            <a href="/book/en/Git-Basics-Working-with-Remotes">Working with Remotes</a>
+          </li>
+          <li>
+            2.6
+            <a href="/book/en/Git-Basics-Tagging">Tagging</a>
+          </li>
+          <li>
+            2.7
+            <a href="/book/en/Git-Basics-Tips-and-Tricks">Tips and Tricks</a>
+          </li>
+          <li>
+            2.8
+            <a href="/book/en/Git-Basics-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+  <li class='chapter'>
+  <h2>3. <a href="/book/en/Git-Branching">Git Branching</a></h2>
+    <ol>
+          <li>
+            3.1
+            <a href="/book/en/Git-Branching-What-a-Branch-Is">What a Branch Is</a>
+          </li>
+          <li>
+            3.2
+            <a href="/book/en/Git-Branching-Basic-Branching-and-Merging">Basic Branching and Merging</a>
+          </li>
+          <li>
+            3.3
+            <a href="/book/en/Git-Branching-Branch-Management">Branch Management</a>
+          </li>
+          <li>
+            3.4
+            <a href="/book/en/Git-Branching-Branching-Workflows">Branching Workflows</a>
+          </li>
+          <li>
+            3.5
+            <a href="/book/en/Git-Branching-Remote-Branches">Remote Branches</a>
+          </li>
+          <li>
+            3.6
+            <a href="/book/en/Git-Branching-Rebasing">Rebasing</a>
+          </li>
+          <li>
+            3.7
+            <a href="/book/en/Git-Branching-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+</ol>
+
+    </div>
+    <div class='column-middle'>
+      <ol class='book-toc'>
+  <li class='chapter'>
+  <h2>4. <a href="/book/en/Git-on-the-Server">Git on the Server</a></h2>
+    <ol>
+          <li>
+            4.1
+            <a href="/book/en/Git-on-the-Server-The-Protocols">The Protocols</a>
+          </li>
+          <li>
+            4.2
+            <a href="/book/en/Git-on-the-Server-Getting-Git-on-a-Server">Getting Git on a Server</a>
+          </li>
+          <li>
+            4.3
+            <a href="/book/en/Git-on-the-Server-Generating-Your-SSH-Public-Key">Generating Your SSH Public Key</a>
+          </li>
+          <li>
+            4.4
+            <a href="/book/en/Git-on-the-Server-Setting-Up-the-Server">Setting Up the Server</a>
+          </li>
+          <li>
+            4.5
+            <a href="/book/en/Git-on-the-Server-Public-Access">Public Access</a>
+          </li>
+          <li>
+            4.6
+            <a href="/book/en/Git-on-the-Server-GitWeb">GitWeb</a>
+          </li>
+          <li>
+            4.7
+            <a href="/book/en/Git-on-the-Server-Gitosis">Gitosis</a>
+          </li>
+          <li>
+            4.8
+            <a href="/book/en/Git-on-the-Server-Gitolite">Gitolite</a>
+          </li>
+          <li>
+            4.9
+            <a href="/book/en/Git-on-the-Server-Git-Daemon">Git Daemon</a>
+          </li>
+          <li>
+            4.10
+            <a href="/book/en/Git-on-the-Server-Hosted-Git">Hosted Git</a>
+          </li>
+          <li>
+            4.11
+            <a href="/book/en/Git-on-the-Server-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+  <li class='chapter'>
+  <h2>5. <a href="/book/en/Distributed-Git">Distributed Git</a></h2>
+    <ol>
+          <li>
+            5.1
+            <a href="/book/en/Distributed-Git-Distributed-Workflows">Distributed Workflows</a>
+          </li>
+          <li>
+            5.2
+            <a href="/book/en/Distributed-Git-Contributing-to-a-Project">Contributing to a Project</a>
+          </li>
+          <li>
+            5.3
+            <a href="/book/en/Distributed-Git-Maintaining-a-Project">Maintaining a Project</a>
+          </li>
+          <li>
+            5.4
+            <a href="/book/en/Distributed-Git-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+  <li class='chapter'>
+  <h2>6. <a href="/book/en/Git-Tools">Git Tools</a></h2>
+    <ol>
+          <li>
+            6.1
+            <a href="/book/en/Git-Tools-Revision-Selection">Revision Selection</a>
+          </li>
+          <li>
+            6.2
+            <a href="/book/en/Git-Tools-Interactive-Staging">Interactive Staging</a>
+          </li>
+          <li>
+            6.3
+            <a href="/book/en/Git-Tools-Stashing">Stashing</a>
+          </li>
+          <li>
+            6.4
+            <a href="/book/en/Git-Tools-Rewriting-History">Rewriting History</a>
+          </li>
+          <li>
+            6.5
+            <a href="/book/en/Git-Tools-Debugging-with-Git">Debugging with Git</a>
+          </li>
+          <li>
+            6.6
+            <a href="/book/en/Git-Tools-Submodules">Submodules</a>
+          </li>
+          <li>
+            6.7
+            <a href="/book/en/Git-Tools-Subtree-Merging">Subtree Merging</a>
+          </li>
+          <li>
+            6.8
+            <a href="/book/en/Git-Tools-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+</ol>
+
+    </div>
+    <div class='column-right'>
+      <ol class='book-toc'>
+  <li class='chapter'>
+  <h2>7. <a href="/book/en/Customizing-Git">Customizing Git</a></h2>
+    <ol>
+          <li>
+            7.1
+            <a href="/book/en/Customizing-Git-Git-Configuration">Git Configuration</a>
+          </li>
+          <li>
+            7.2
+            <a href="/book/en/Customizing-Git-Git-Attributes">Git Attributes</a>
+          </li>
+          <li>
+            7.3
+            <a href="/book/en/Customizing-Git-Git-Hooks">Git Hooks</a>
+          </li>
+          <li>
+            7.4
+            <a href="/book/en/Customizing-Git-An-Example-Git-Enforced-Policy">An Example Git-Enforced Policy</a>
+          </li>
+          <li>
+            7.5
+            <a href="/book/en/Customizing-Git-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+  <li class='chapter'>
+  <h2>8. <a href="/book/en/Git-and-Other-Systems">Git and Other Systems</a></h2>
+    <ol>
+          <li>
+            8.1
+            <a href="/book/en/Git-and-Other-Systems-Git-and-Subversion">Git and Subversion</a>
+          </li>
+          <li>
+            8.2
+            <a href="/book/en/Git-and-Other-Systems-Migrating-to-Git">Migrating to Git</a>
+          </li>
+          <li>
+            8.3
+            <a href="/book/en/Git-and-Other-Systems-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+  <li class='chapter'>
+  <h2>9. <a href="/book/en/Git-Internals">Git Internals</a></h2>
+    <ol>
+          <li>
+            9.1
+            <a href="/book/en/Git-Internals-Plumbing-and-Porcelain">Plumbing and Porcelain</a>
+          </li>
+          <li>
+            9.2
+            <a href="/book/en/Git-Internals-Git-Objects">Git Objects</a>
+          </li>
+          <li>
+            9.3
+            <a href="/book/en/Git-Internals-Git-References">Git References</a>
+          </li>
+          <li>
+            9.4
+            <a href="/book/en/Git-Internals-Packfiles">Packfiles</a>
+          </li>
+          <li>
+            9.5
+            <a href="/book/en/Git-Internals-The-Refspec">The Refspec</a>
+          </li>
+          <li>
+            9.6
+            <a href="/book/en/Git-Internals-Transfer-Protocols">Transfer Protocols</a>
+          </li>
+          <li>
+            9.7
+            <a href="/book/en/Git-Internals-Maintenance-and-Data-Recovery">Maintenance and Data Recovery</a>
+          </li>
+          <li>
+            9.8
+            <a href="/book/en/Git-Internals-Summary">Summary</a>
+          </li>
+    </ol>
+  </li>
+</ol>
+
+      <ol class="book-toc">
+        <li class='chapter'>
+          <h2><a href="/book/commands">Index of Commands</a></h2>
+        </li>
+      </ol>
+    </div>
+  </div>
+ </div>
+
+</div>
+
+<div id='main' class="book">
+    <h1>2.4 Git Basics - Undoing Things</h1>
+  <div><h2>Undoing Things</h2>
+
+<p>At any stage, you may want to undo something. Here, we’ll review a few basic tools for undoing changes that you’ve made. Be careful, because you can’t always revert some of these undos. This is one of the few areas in Git where you may lose some work if you do it wrong.</p>
+
+<h3 id="Changing-Your-Last-Commit"><a href="#Changing-Your-Last-Commit">Changing Your Last Commit</a></h3>
+
+<p>One of the common undos takes place when you commit too early and possibly forget to add some files, or you mess up your commit message. If you want to try that commit again, you can run commit with the <code>--amend</code> option:</p>
+
+<pre><code>$ git commit --amend&#x000A;</code></pre>
+
+<p>This command takes your staging area and uses it for the commit. If you’ve made no changes since your last commit (for instance, you run this command immediately after your previous commit), then your snapshot will look exactly the same and all you’ll change is your commit message.</p>
+
+<p>The same commit-message editor fires up, but it already contains the message of your previous commit. You can edit the message the same as always, but it overwrites your previous commit.</p>
+
+<p>As an example, if you commit and then realize you forgot to stage the changes in a file you wanted to add to this commit, you can do something like this:</p>
+
+<pre><code>$ git commit -m &#39;initial commit&#39;&#x000A;$ git add forgotten_file&#x000A;$ git commit --amend&#x000A;</code></pre>
+
+<p>After these three commands, you end up with a single commit — the second commit replaces the results of the first.</p>
+
+<h3 id="Unstaging-a-Staged-File"><a href="#Unstaging-a-Staged-File">Unstaging a Staged File</a></h3>
+
+<p>The next two sections demonstrate how to wrangle your staging area and working directory changes. The nice part is that the command you use to determine the state of those two areas also reminds you how to undo changes to them. For example, let’s say you’ve changed two files and want to commit them as two separate changes, but you accidentally type <code>git add *</code> and stage them both. How can you unstage one of the two? The <code>git status</code> command reminds you:</p>
+
+<pre><code>$ git add .&#x000A;$ git status&#x000A;# On branch master&#x000A;# Changes to be committed:&#x000A;#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)&#x000A;#&#x000A;#       modified:   README.txt&#x000A;#       modified:   benchmarks.rb&#x000A;#&#x000A;</code></pre>
+
+<p>Right below the “Changes to be committed” text, it says &quot;use <code>git reset HEAD &lt;file&gt;...</code> to unstage&quot;. So, let’s use that advice to unstage the <code>benchmarks.rb</code> file:</p>
+
+<pre><code>$ git reset HEAD benchmarks.rb&#x000A;benchmarks.rb: locally modified&#x000A;$ git status&#x000A;# On branch master&#x000A;# Changes to be committed:&#x000A;#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)&#x000A;#&#x000A;#       modified:   README.txt&#x000A;#&#x000A;# Changes not staged for commit:&#x000A;#   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)&#x000A;#   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)&#x000A;#&#x000A;#       modified:   benchmarks.rb&#x000A;#&#x000A;</code></pre>
+
+<p>The command is a bit strange, but it works. The <code>benchmarks.rb</code> file is modified but once again unstaged.</p>
+
+<h3 id="Unmodifying-a-Modified-File"><a href="#Unmodifying-a-Modified-File">Unmodifying a Modified File</a></h3>
+
+<p>What if you realize that you don’t want to keep your changes to the <code>benchmarks.rb</code> file? How can you easily unmodify it — revert it back to what it looked like when you last committed (or initially cloned, or however you got it into your working directory)? Luckily, <code>git status</code> tells you how to do that, too. In the last example output, the unstaged area looks like this:</p>
+
+<pre><code># Changes not staged for commit:&#x000A;#   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)&#x000A;#   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)&#x000A;#&#x000A;#       modified:   benchmarks.rb&#x000A;#&#x000A;</code></pre>
+
+<p>It tells you pretty explicitly how to discard the changes you’ve made (at least, the newer versions of Git, 1.6.1 and later, do this — if you have an older version, we highly recommend upgrading it to get some of these nicer usability features). Let’s do what it says:</p>
+
+<pre><code>$ git checkout -- benchmarks.rb&#x000A;$ git status&#x000A;# On branch master&#x000A;# Changes to be committed:&#x000A;#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)&#x000A;#&#x000A;#       modified:   README.txt&#x000A;#&#x000A;</code></pre>
+
+<p>You can see that the changes have been reverted. You should also realize that this is a dangerous command: any changes you made to that file are gone — you just copied another file over it. Don’t ever use this command unless you absolutely know that you don’t want the file. If you just need to get it out of the way, we’ll go over stashing and branching in the next chapter; these are generally better ways to go.</p>
+
+<p>Remember, anything that is committed in Git can almost always be recovered. Even commits that were on branches that were deleted or commits that were overwritten with an <code>--amend</code> commit can be recovered (see <em>Chapter 9</em> for data recovery). However, anything you lose that was never committed is likely never to be seen again.</p>
+
+<div id="nav"><a href="/book/en/Git-Basics-Viewing-the-Commit-History">prev</a> | <a href="/book/en/Git-Basics-Working-with-Remotes">next</a></div></div>
+<a rel="superbox[content]" href="#linxhometext">SuperBox element</a>
+</div>
+
+</div>
+</div>
+<footer>
+<div class='site-source'>
+This <a href="https://github.com/github/gitscm-next/blob/master/README.md#license">open sourced</a> site is <a href="https://github.com/github/gitscm-next">hosted on GitHub.</a><br>
+Patches, suggestions, and comments are welcome.
+</div>
+<div class='sfc-member'>
+Git is a member of the <a href="/sfc">Software Freedom Conservancy</a>
+</div>
+</footer>
+
+
+</div>
+</body>
+</html>
+
