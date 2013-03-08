@@ -1,4 +1,3 @@
-console.log("start")
 function getMainbody() {
     bodylength = document.getElementsByTagName("body")[0].textContent.length;
     var textlist = document.getElementsByTagName("div");
@@ -37,7 +36,6 @@ function showmask() {
     mask.id = "mask";
     mask.style.cssText = "position:absolute;z-index:5;width:"+width+"px;height:"+height+"px;background:#000;filter:alpha(opacity=30);opacity:0.3;top:0;left:0";
     $("#mask").click(function() {
-        console.log('click');
         $("#mask").remove();
     });  
     document.body.appendChild(mask); 
