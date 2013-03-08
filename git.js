@@ -1,3 +1,4 @@
+//获取页面内容
 function getMainbody() {
     bodylength = document.getElementsByTagName("body")[0].textContent.length;
     var textlist = document.getElementsByTagName("div");
@@ -16,19 +17,7 @@ function getMainbody() {
    return textlist[minindex];
 }
 
-
-function addItem() {
-    var body = document.body;
-    //var node = document.createElement("div");
-   // node.innerHTML = getMainbody();
-    var node = getMainbody().cloneNode(true);
-    node.id = "linxhometext";
-    node.setAttribute("style","display:none");
-    node.style.overflow = "auto";
-    node.style.height = "400px"
-    body.appendChild(node); 
-}
-
+//页面蒙层
 function showmask() {
     mask = document.createElement("div");
     var width = $(document).width();
@@ -44,25 +33,24 @@ function showmask() {
 
 //show table
 function showdiv() {
-   var superbox = document.createElement("div"); 
-   superbox.id  = "superbox";
-   superbox.style.cssText = "display:none;position:absolute;z-index:40; border:solid 1px #79BCFF; background-color: #FFFFFF; maxWidth:900px;height:450px;";
+   var daijun_box = document.createElement("div"); 
+   daijun_box.id  = "daijun_box";
+   daijun_box.style.cssText = "display:none;position:absolute;z-index:40; border:solid 1px #79BCFF; background-color: #FFFFFF;minWidth:900px; maxWidth:900px;minHeight:450px;maxHeight:450px";
    var node = getMainbody().cloneNode(true);
    node.id = "linxhometext";
    node.style.overflow = "auto";
    node.style.height = "400px"
    node.style.width = "900px"
-   //superbox.appendChild(document.createElement('br'));
-   superbox.appendChild(node);
- 
+   //daijun_box.appendChild(document.createElement('br'));
+   daijun_box.appendChild(node);
+
    var submitbutton = document.createElement("p");
    submitbutton.id = "submit";  
    submitbutton.style.cssText = "cursor:pointer;height:30px;background-color:#EEF2FB;text-align:center";
    submitbutton.innerHTML = "<a style='width:900px;font-size:18px;'><strong><span style='color:#000000'>submit</span></strong></a>"; 
-   superbox.appendChild(submitbutton);
-   
-   document.body.appendChild(superbox); 
-   var o  = document.getElementById("superbox");
+   daijun_box.appendChild(submitbutton);
+   document.body.appendChild(daijun_box); 
+   var o  = document.getElementById("daijun_box");
    o.style.display="block";
    o.style.top="253px";
    var width = $(document).width();
@@ -74,28 +62,85 @@ function showdiv() {
 
 function init() {
     //抽取内容
-    getMainbody();
+    body = getMainbody();
     //显示蒙层
     showmask();
     //显示内容
     showdiv();
     $("#submit").click(function(){
        var url = "http://kan.weibo.com/ceditor?editType=2";
-       var data = Array();
-       data[0] = 1;
-       $.post(url,data);
-       document.getElementById("superbox").style.display='none';
+       submit(removeHTMLTag(body.outerHTML));
+       document.getElementById("daijun_box").style.display='none';
        document.getElementById("mask").style.display='none';
      
     });
     
 }
+
+
+
+function removeHTMLTag(str) {
+    str = str.replace(/<\/?>\(link|a|script\)[^>]*>/g,'');
+    str = str.replace(/href[^>]*/g,"");
+    return str;
+}
+
+//再次点击
 function showagain() {
-    document.getElementById("superbox").style.display='';
+    document.getElementById("daijun_box").style.display='';
     document.getElementById("mask").style.display='';
 
 }
-init();
-//window.onload = getMainbody;
 
+//提交到编辑器
+function submit(body) {
+ url = "http://kan.weibo.com/ceditor?editType=2";
+ openPostWindow(url,body,'_blank');
+   
+}
+
+//post数据到页面
+function openPostWindow(url, data, name)    
+{    
+   title = "title";
+   url = "http://kan.weibo.com/ceditor?editType=2";
+   var tempForm = document.createElement("form");    
+   tempForm.id="tempForm1";    
+   tempForm.method="post";    
+   tempForm.action=url;    
+   tempForm.target=name;    
+    
+   var hideInput = document.createElement("input");    
+   hideInput.type="hidden";    
+   hideInput.name= "title"  
+   hideInput.value= "title";  
+   tempForm.appendChild(hideInput);     
+   
+   var hideInput2 = document.createElement("input");    
+   hideInput2.type="hidden";    
+   hideInput2.name= "body"  
+   hideInput2.value= data;  
+   tempForm.appendChild(hideInput2);     
+   
+   var hideInput3 = document.createElement("input");    
+   hideInput3.type="hidden";    
+   hideInput3.name= "medias"  
+   hideInput3.value= "medias";  
+   tempForm.appendChild(hideInput3);     
+   tempForm.addEventListener("onsubmit",function(){ openWindow(name); });  
+   document.body.appendChild(tempForm);    
+  
+//   tempForm.fireEvent("onsubmit");  
+   tempForm.submit();  
+   document.body.removeChild(tempForm);  
+}  
+  
+  
+  
+function openWindow(name)    
+{    
+    window.open('about:blank',name,'height=400, width=400, top=0, left=0, toolbar=yes, menubar=yes, scrollbars=yes, resizable=yes,location=yes, status=yes');     
+  
+}
+init()
 

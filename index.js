@@ -1,24 +1,9 @@
 function start() {
  url = "http://kan.weibo.com/ceditor?editType=2";
-openPostWindow(url,'','_blank');
+ openPostWindow(url,'','_blank');
    
 }
 
-function sendpost() {
-   //$.post(url,data,callback); 
-   title = "title";
-   body = "body";
-   medias = {"242342kjkjk":{"name":"name","pid":"pid","type":"type","src":"http://www.baidu"}};
-   medias = jQuery.parseJSON(medias); 
-console.log(medias);
-   medias = encodeURIComponent(medias);
-console.log(medias);
-   data = {"title":title,"body":body,"medias":"dfd"};
-   url = "http://kan.weibo.com/ceditor?editType=2";
-   $.post(url,data,function(result){
-        alert(result);
-    });
-}
 window.onload = start;
 
 function openPostWindow(url, data, name)    
