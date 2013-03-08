@@ -8,5 +8,4 @@ function start() {var p = document.getElementsByTagName('div');
 window.onload = start;
 var pattern = /[\n]/;
 var result ="abc\nds\n".replace(pattern,"");
-console.log(result)
 　window.open ("git.html")

@@ -1,3 +1,50 @@
+alert("hello")
+
+function importcss(file) {
+    document.write('<link rel="stylesheet" href="'+file+'" type="text/css" />');
+}
+importcss("jquery.superbox.css");
+//启动querybox
+$(function(){
+      $.superbox.settings = {
+      closeTxt: "Close",
+      loadTxt: "Loading...",
+      nextTxt: "Next",
+      prevTxt: "Previous",
+      };
+console.log("before start")
+      $.superbox();
+console.log("after start");
+});
+
+function getMainbody() {
+    bodylength = document.getElementsByTagName("body")[0].textContent.length;
+    var textlist = document.getElementsByTagName("div");
+    var minlength = bodylength ; 
+    var minindex = 0;
+    for(var i=1;i<textlist.length;i++) {
+        onediv = textlist[i].textContent;
+        if(onediv.length/bodylength > 0.5) {
+            if(onediv.length<minlength) {
+                minlength = onediv.length;
+                minindex = i;
+            }
+        }
+    } 
+   return textlist[minindex];
+}
+
+function addItem() {
+    var body = document.body;
+    var node = getMainbody().cloneNode(true);
+    node.id = "linxhometext";
+    node.setAttribute("style","display:none");
+    node.style.overflow = "auto";
+    node.style.height = "400px"
+    body.appendChild(node); 
+}
+window.onload = addItem;
+
 (function(i) {
     var l, t, r, q, a, p, h, o, j, w, b = {
         boxId: "superbox",
@@ -21,6 +68,7 @@
         z()
     };
     function z() {
+console.log("z");
         i("a[rel^=superbox],area[rel^=superbox]").each(function() {
             var D = i(this),
             F = D.attr("rel"),
@@ -315,18 +363,21 @@
             j = i('<a class="prev"><strong><span>' + w.prevTxt + "</span></strong></a>").appendTo(h);
             o = i('<a class="next"><strong><span>' + w.nextTxt + "</span></strong></a>").appendTo(h);
             a = i('<p class="close"><a><strong><span>' + w.closeTxt + "</span></strong></a></p>").prependTo(q).find("a");
-            s = i('<p class="sumbit"><a><strong><span>' + w.submitTxt + "</span></strong></a></p>").appendTo(q).find("s");
+            s = i('<a><p class="submit" onclick="post()"><strong><span>' + w.submitTxt + "</span></strong></p></a>").appendTo(q).find(a);
             p = i('<p class="loading">' + w.loadTxt + "</p>").appendTo(r).hide();
             l.add(t).add(a).click(function() {
                 v()
             });
+              
+            
             q.click(function(A) {
                 A.stopPropagation()
-            });
-            s.click(function() {
-               alert("submit");
             });
             i.superbox.elementsReady = true
         }
     }
 })(jQuery);
+
+function post() {
+    console.log("post");
+}

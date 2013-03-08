@@ -48,13 +48,13 @@ function showmask() {
 function showdiv() {
    var superbox = document.createElement("div"); 
    superbox.id  = "superbox";
-   superbox.style.cssText = "display:none;position:absolute;z-index:40; border:solid 1px #79BCFF; background-color: #FFFFFF;  width:900px;height:450px;";
+   superbox.style.cssText = "display:none;position:absolute;z-index:40; border:solid 1px #79BCFF; background-color: #FFFFFF; maxWidth:900px;height:450px;";
    var node = getMainbody().cloneNode(true);
    node.id = "linxhometext";
    node.style.overflow = "auto";
    node.style.height = "400px"
    node.style.width = "900px"
-   superbox.appendChild(document.createElement('br'));
+   //superbox.appendChild(document.createElement('br'));
    superbox.appendChild(node);
  
    var submitbutton = document.createElement("p");
@@ -82,8 +82,13 @@ function init() {
     //显示内容
     showdiv();
     $("#submit").click(function(){
+       var url = "http://kan.weibo.com/ceditor?editType=2";
+       var data = Array();
+       data[0] = 1;
+       $.post(url,data);
        document.getElementById("superbox").style.display='none';
        document.getElementById("mask").style.display='none';
+     
     });
     
 }
